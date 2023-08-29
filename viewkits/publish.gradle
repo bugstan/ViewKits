@@ -1,0 +1,75 @@
+ext["signing.keyId"] = ''
+ext["signing.password"] = ''
+ext["signing.secretKeyRingFile"] = ''
+ext["ossrhUsername"] = ''
+ext["ossrhPassword"] = ''
+
+File secretPropsFile = project.rootProject.file('local.properties')
+if (secretPropsFile.exists()) {
+    Properties properties = new Properties()
+    properties.load(new FileInputStream(secretPropsFile))
+    properties.each { name, value ->
+        ext[name] = value
+    }
+} else {
+    println "No props file, loading env vars"
+}
+
+tasks.register('androidSourcesJar', Jar) {
+    archiveClassifier.set("sources")
+    from android.sourceSets.main.java.source
+    exclude "**/R.class"
+    exclude "**/BuildConfig.class"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId 'io.github.out2null'
+                artifactId 'ViewKits'
+                version '1.0.1'
+                pom {
+                    name = 'View kits'
+                    description = 'View kits is a set of Android custom View component packages for custom views that are often used in daily development.'
+                    url = 'https://github.com/out2null/ViewKits'
+
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'https://github.com/out2null/ViewKits/blob/main/LICENSE'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'out2null'
+                            name = 'out2null'
+                            email = 'out2null@gmail.com'
+                        }
+                    }
+                    scm {
+                        connection = 'https://github.com/out2null/ViewKits.git'
+                        developerConnection = 'https://github.com/out2null/ViewKits.git'
+                        url = 'https://github.com/out2null/ViewKits'
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
+                credentials {
+                    username ossrhUsername
+                    password ossrhPassword
+                }
+            }
+        }
+    }
+
+}
+signing {
+    sign publishing.publications
+}
+

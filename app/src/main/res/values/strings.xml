@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">View Kits</string>
+    <string name="send">Send</string>
+    <string name="recharge">Recharge</string>
+    <string name="sample_main_page">Sample Main Page</string>
+    <string name="show_dialog">Show Dialog</string>
+    <string name="viewPage_container">viewPage container</string>
+</resources>
