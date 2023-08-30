@@ -25,7 +25,7 @@
         android:layout_marginBottom="@dimen/dp_60"
         android:background="@drawable/bg_border_16_green"
         android:paddingHorizontal="@dimen/dp_16"
-        android:paddingVertical="@dimen/dp_10"
+        android:paddingVertical="@dimen/dp_12"
         android:text="@string/viewPage_container"
         android:textColor="@color/dark_gray"
         android:textSize="@dimen/sp_12"

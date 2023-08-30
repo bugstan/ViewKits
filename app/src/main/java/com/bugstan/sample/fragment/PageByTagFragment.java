@@ -10,16 +10,15 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.bugstan.sample.bean.PagerItemBean;
+import com.bugstan.sample.databinding.FragmentPagerByTagBinding;
+import com.bugstan.sample.viewmodel.PagerPanelViewModel;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
-import com.bugstan.sample.bean.PagerItemBean;
-import com.bugstan.sample.databinding.FragmentPagerByTagBinding;
-import com.bugstan.sample.viewmodel.PagerPanelViewModel;
 
 /**
  * paginate by tag, sub page
@@ -61,7 +60,8 @@ public class PageByTagFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        mViewBinding.pagerLayout.setSaveEnabled(false);
+        mViewBinding.pagerLayout.setOffscreenPageLimit(2);
+        // mViewBinding.pagerLayout.setSaveEnabled(false);
 
         mViewBinding.pagerLayout.setAdapter(new FragmentStateAdapter(PageByTagFragment.this) {
             @NonNull

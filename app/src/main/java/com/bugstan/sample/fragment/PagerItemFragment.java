@@ -12,15 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
-
-import java.util.List;
-
 import com.bugstan.sample.adapter.PagerDataAdapter;
 import com.bugstan.sample.bean.PagerItemBean;
 import com.bugstan.sample.databinding.FragmentPagerItemBinding;
 import com.bugstan.sample.viewmodel.PagerPanelViewModel;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
+
+import java.util.List;
 
 /**
  * show the item on this page
@@ -44,7 +43,7 @@ public class PagerItemFragment extends Fragment {
         mPagerItemList = pagerItemBeanList;
 
         // for item count > 4
-        while (mPagerItemList.size() < 5) {
+        while (mPagerItemList.size() <= NUM_ITEMS_PER_LINE) {
             mPagerItemList.add(new PagerItemBean());
         }
     }
